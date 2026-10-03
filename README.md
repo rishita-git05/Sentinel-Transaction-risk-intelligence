@@ -81,12 +81,3 @@ streamlit run app/app.py
 ```
 
 The application will open in your browser at `http://localhost:8501`.
-
----
-
-## 🎓 3–5 Minute Faculty Demo Guide
-
-1. **Overview:** Show dataset volume (284,807 tx), extreme 0.173% fraud rate, and diurnal 24-hour transaction volume patterns.
-2. **Transaction Scanner:** Select a verified transaction from the holdout pool, click **SCAN TRANSACTION**, view the dynamic cyber telemetry check and Plotly risk score gauge.
-3. **Fraud Investigation:** Open the case dossier to reveal mathematical SHAP feature contributions showing which PCA signals triggered the fraud alert.
-4. **Model Intelligence:** Demonstrate the PR curve and the **Interactive Threshold Simulator** — adjust the threshold slider from 0.10 to 0.90 to show the live trade-off between Precision and Recall.
