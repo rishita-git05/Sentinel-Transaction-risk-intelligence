@@ -132,15 +132,14 @@ def create_shap_feature_importance_plot(shap_df, max_display=8):
     top_df = shap_df.head(max_display).copy()
     top_df = top_df.sort_values(by="SHAP_Contribution", ascending=True)
     
-    # Emerald green/teal negative contributions, Crimson/coral positive contributions, Neutral slate
     colors = []
     for x in top_df['SHAP_Contribution']:
         if abs(x) < 0.005:
-            colors.append('#94A3B8')  # Neutral slate
+            colors.append('#94A3B8')  
         elif x > 0:
-            colors.append('#EF4444')  # Coral/red (fraud push)
+            colors.append('#EF4444')  
         else:
-            colors.append('#0D9488')  # Emerald/teal (legitimate push)
+            colors.append('#0D9488')  
             
     fig = go.Figure(go.Bar(
         x=top_df['SHAP_Contribution'],
@@ -182,7 +181,6 @@ def create_pr_curve_plot(pr_data, highlight_recall=None, highlight_precision=Non
 
     fig = go.Figure()
     
-    # Curve line (Deep Indigo Accent)
     fig.add_trace(go.Scatter(
         x=rec,
         y=prec,
@@ -192,7 +190,6 @@ def create_pr_curve_plot(pr_data, highlight_recall=None, highlight_precision=Non
         hovertemplate="<b>Recall:</b> %{x:.4f}<br><b>Precision:</b> %{y:.4f}<extra></extra>"
     ))
 
-    # Highlight point (Coral Danger)
     if highlight_recall is not None and highlight_precision is not None:
         fig.add_trace(go.Scatter(
             x=[highlight_recall],
@@ -203,7 +200,6 @@ def create_pr_curve_plot(pr_data, highlight_recall=None, highlight_precision=Non
             hovertemplate=f"<b>Selected Point</b><br>Recall: {highlight_recall:.4f}<br>Precision: {highlight_precision:.4f}<extra></extra>"
         ))
 
-    # Baseline (Neutral Slate)
     fig.add_trace(go.Scatter(
         x=[0, 1],
         y=[0.00173, 0.00173],
@@ -258,7 +254,6 @@ def create_roc_curve_plot(roc_data, highlight_fpr=None, highlight_tpr=None, roc_
 
     fig = go.Figure()
     
-    # Curve line (Deep Indigo Accent)
     fig.add_trace(go.Scatter(
         x=fpr,
         y=tpr,
@@ -268,7 +263,6 @@ def create_roc_curve_plot(roc_data, highlight_fpr=None, highlight_tpr=None, roc_
         hovertemplate="<b>FPR:</b> %{x:.4f}<br><b>TPR:</b> %{y:.4f}<extra></extra>"
     ))
 
-    # Highlight point
     if highlight_fpr is not None and highlight_tpr is not None:
         fig.add_trace(go.Scatter(
             x=[highlight_fpr],
@@ -279,7 +273,6 @@ def create_roc_curve_plot(roc_data, highlight_fpr=None, highlight_tpr=None, roc_
             hovertemplate=f"<b>Selected Point</b><br>FPR: {highlight_fpr:.4f}<br>TPR: {highlight_tpr:.4f}<extra></extra>"
         ))
 
-    # Diagonal baseline (Neutral Slate)
     fig.add_trace(go.Scatter(
         x=[0, 1],
         y=[0, 1],

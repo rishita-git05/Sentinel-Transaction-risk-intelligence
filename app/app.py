@@ -75,9 +75,7 @@ from src.evaluate import compute_metrics
 # Inject custom CSS
 st.markdown(get_custom_css(), unsafe_allow_html=True)
 
-# ---------------------------------------------------------
 # CACHED DATA & MODEL LOADERS
-# ---------------------------------------------------------
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_PATH = os.path.join(BASE_DIR, "creditcard.csv")
 MODELS_DIR = os.path.join(BASE_DIR, "models")
@@ -149,9 +147,7 @@ def load_inference_pipeline(model_name="XGBoost"):
     return predictor, explainer, preprocessor
 
 
-# ---------------------------------------------------------
 # INITIALIZE SESSION STATE
-# ---------------------------------------------------------
 if "current_page" not in st.session_state:
     st.session_state.current_page = "01 Scanner"
 if "selected_tx_index" not in st.session_state:
@@ -169,9 +165,7 @@ test_pool_df = st.session_state.custom_test_pool if (st.session_state.data_sourc
 metrics_data, threshold_calib, diag_curves = load_evaluation_artifacts()
 predictor, explainer, preprocessor = load_inference_pipeline(st.session_state.selected_model)
 
-# ---------------------------------------------------------
 # SIDEBAR NAVIGATION
-# ---------------------------------------------------------
 with st.sidebar:
     st.markdown("""
         <div style="padding: 8px 0 20px 0;">
@@ -271,9 +265,7 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
 
-# =========================================================
 # PAGE 1: REAL-TIME TRANSACTION SCANNER (REBUILT)
-# =========================================================
 if st.session_state.current_page == "01 Scanner":
     calib_thresh = threshold_calib[st.session_state.selected_model]["best_f1_threshold"]
 
@@ -612,9 +604,7 @@ if st.session_state.current_page == "01 Scanner":
                     st.dataframe(pca_df, use_container_width=True)
 
 
-# =========================================================
 # PAGE 2: FRAUD LANDSCAPE
-# =========================================================
 elif st.session_state.current_page == "02 Landscape":
     st.markdown(render_header("Landscape"), unsafe_allow_html=True)
     
@@ -689,9 +679,7 @@ elif st.session_state.current_page == "02 Landscape":
     """, unsafe_allow_html=True)
 
 
-# =========================================================
 # PAGE 3: MODEL PERFORMANCE
-# =========================================================
 elif st.session_state.current_page == "03 Performance":
     st.markdown(render_header("Performance"), unsafe_allow_html=True)
     
@@ -751,9 +739,7 @@ elif st.session_state.current_page == "03 Performance":
         """, unsafe_allow_html=True)
 
 
-# =========================================================
 # PAGE 4: THRESHOLD ANALYSIS
-# =========================================================
 elif st.session_state.current_page == "04 Threshold":
     st.markdown(render_header("Threshold"), unsafe_allow_html=True)
     
